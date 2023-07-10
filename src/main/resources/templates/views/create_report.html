@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Report</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous">
+</head>
+
+<body>
+	
+	 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+        <a class="navbar-brand" th:href="@{/home}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/add}">New Patient</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/patients}">Patient List</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="jumbotron text-center" style="margin-bottom:0;">
+        <h1>Patient Management System</h1>
+        <p>In this project, you can manage patient data!</p>
+    </div>
+
+    <div class="container">
+        <h2>Create New Report</h2>
+        <hr>
+
+       <form class="was-validated" th:action="@{/process-report/{id}(id=${report.patient.id})}" th:object="${report}" method="post">
+
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="patient.firstName"
+                    th:value="${firstName}" placeholder="First Name" required>
+                <div class="invalid-feedback">Please enter the first name.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="patient.lastName"
+                    th:value="${lastName}" placeholder="Last Name">
+            </div>
+
+            <div class="form-group">
+                <label for="testResults">Test Results</label>
+                <textarea class="form-control" id="testResults" name="testResults" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="diagnosis">Diagnosis Information</label>
+                <textarea class="form-control" id="diagnosis" name="diagnosis" rows="4"></textarea>
+            </div>
+
+          
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-warning">Clear</button>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+
+</html>
